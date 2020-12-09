@@ -31,7 +31,7 @@
             <div class="tagDiv" v-if="bzshowID==v.id">
                 <p class="title">系统点评类型: <span class="switchIcon" @click="swtichFunc()">换一换</span></p>
                 <div class="tagClass">
-                    <el-tag v-for="v in tagList[tagArrNum]"  :effect="chooseTagID==v.id?'dark':false" :key="v.id" @click="chooseTagFunc(v)">{{v.tag}}</el-tag>
+                    <el-tag v-for="vv in tagList[tagArrNum]"  :effect="chooseTagID==vv.id?'dark':''" :key="vv.id" @click="chooseTagFunc(v,vv)">{{vv.tag}}</el-tag>
                 </div>
             </div>
             
@@ -115,8 +115,9 @@ export default {
                     break;
             }
         },
-        chooseTagFunc(v){
-            this.chooseTagID=v.id;  
+        chooseTagFunc(v,vv){
+            this.chooseTagID=vv.id;  
+            v.info = `${vv.tag}:${vv.info}`;
         },
         commitAjax(){
             this.bzEditN = -1;
